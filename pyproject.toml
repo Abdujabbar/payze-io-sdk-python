@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "payze-io-sdk-python"
+version = "0.1.0"
+description = "Software Development kit for Payze API"
+authors = ["Abdujabbar MIRKHALIKOV <abdujabbar.mirkhalikov@prestataire.sewan.fr>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+requests = "^2.31.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.1.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
