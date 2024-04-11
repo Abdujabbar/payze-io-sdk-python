@@ -5,9 +5,7 @@ def main():
     sdk = PayzeSDK()
 
     print(sdk.account)
-    
 
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

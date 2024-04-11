@@ -6,18 +6,35 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
 class PayzeSDK:
-    def __init__(self, access_token=None, secret_key=None, webhook_gateway=None, success_redirect_gateway=None, error_redirect_gateway=None) -> None:
-        self._access_token = os.getenv('ACCESS_TOKEN', access_token)
-        self._secret_key = os.getenv('SECRET_KEY', secret_key)
-        self._webhook_gateway = os.getenv('WEBHOOK_GATEWAY', webhook_gateway)
-        self._success_redirect_gateway = os.getenv('SUCCESS_REDIRECT_GATEWAY', success_redirect_gateway)
-        self._error_redirect_gateway = os.getenv('ERROR_REDIRECT_GATEWAY', error_redirect_gateway)
+    def __init__(
+        self,
+        access_token=None,
+        secret_key=None,
+        webhook_gateway=None,
+        success_redirect_gateway=None,
+        error_redirect_gateway=None,
+    ) -> None:
+        self._access_token = os.getenv("ACCESS_TOKEN", access_token)
+        self._secret_key = os.getenv("SECRET_KEY", secret_key)
+        self._webhook_gateway = os.getenv("WEBHOOK_GATEWAY", webhook_gateway)
+        self._success_redirect_gateway = os.getenv(
+            "SUCCESS_REDIRECT_GATEWAY", success_redirect_gateway
+        )
+        self._error_redirect_gateway = os.getenv(
+            "ERROR_REDIRECT_GATEWAY", error_redirect_gateway
+        )
 
         self.account = AccountService(self._secret_key, self._access_token)
-        self.payment = PaymentService(self._secret_key, self._access_token, self._webhook_gateway, self._success_redirect_gateway, self._error_redirect_gateway)
+        self.payment = PaymentService(
+            self._secret_key,
+            self._access_token,
+            self._webhook_gateway,
+            self._success_redirect_gateway,
+            self._error_redirect_gateway,
+        )
         self.payout = PayoutService(self._secret_key, self._access_token)
-
 
     def set_access_token(self, token):
         self.account.set_access_token(token)

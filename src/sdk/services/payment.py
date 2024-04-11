@@ -2,7 +2,14 @@ from .base import BaseService
 
 
 class PaymentService(BaseService):
-    def __init__(self, secret_key, access_token, webhook_gateway, success_redirect_gateway, error_redirect_gateway) -> None:
+    def __init__(
+        self,
+        secret_key,
+        access_token,
+        webhook_gateway,
+        success_redirect_gateway,
+        error_redirect_gateway,
+    ) -> None:
         super().__init__(secret_key, access_token)
 
         self.webhook_gateway = webhook_gateway
@@ -15,7 +22,7 @@ class PaymentService(BaseService):
     def capture(self):
         pass
 
-    def pay(self): #https://docs.payze.io/reference/post_v2-payment-pay
+    def pay(self):  # https://docs.payze.io/reference/post_v2-payment-pay
         pass
 
     def get_payments(self):
