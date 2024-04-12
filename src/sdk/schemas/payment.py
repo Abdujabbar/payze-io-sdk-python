@@ -5,9 +5,9 @@ from .order import Order
 
 
 class Hooks(BaseModel):
-    webhook_gateway: str = Field(..., alias="webhookGateway")
-    success_redirect_gateway: str = Field(..., alias="successRedirectGateway")
-    error_redirect_gateway: str = Field(..., alias="errorRedirectGateway")
+    webhookGateway: str
+    successRedirectGateway: str
+    errorRedirectGateway: str
 
 
 class CardPayment(BaseModel):
@@ -30,8 +30,8 @@ class PayoutAccount(BaseModel):
 
 class PayoutSplit(BaseModel):
     amount: float
-    payout_account: PayoutAccount = Field(..., alias="payoutAccount")
-    delay_payout_days: int = Field(..., alias="delayPayoutDays")
+    payout_account: PayoutAccount
+    delay_payout_days: int
     description: str
 
 
@@ -43,18 +43,18 @@ class PaymentSource(Enum):
 class MetaData(BaseModel):
     channel: str
     order: Order
-    extra_attributes: dict = Field(..., "extraAttributes")
+    extra_attributes: dict
 
 
 class Payment(BaseModel):
-    source: PaymentSource
+    source: str
     amount: float
     currency: str
     hooks: Hooks
     language: Optional[str]
-    idempotency_key: Optional[str] = Field(..., "idempotencyKey")
-    card_payment: Optional[CardPayment] = Field(..., "cardPayment")
+    idempotency_key: Optional[str]
+    card_payment: Optional[CardPayment]
     metadata: Optional[MetaData]
-    payout_split: Optional[PayoutSplit] = Field(..., "payoutSplit")
-    share_link: Optional[ShareLink] = Field(..., "shareLink")
+    payout_split: Optional[PayoutSplit]
+    share_link: Optional[ShareLink]
     token: Optional[str]

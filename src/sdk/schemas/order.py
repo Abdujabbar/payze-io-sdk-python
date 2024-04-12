@@ -1,11 +1,11 @@
-from typing import List
+from typing import List, Optional
 from pydantic import BaseModel, Field
 from .address import Address
 
 
 class OrderItemDetails(BaseModel):
-    comission_info_tin: str = Field(..., "commissionInfoTin")
-    comission_info_pinfl: str = Field(..., "comissionInfoPinfl")
+    comission_info_tin: str = Field(..., alias="commissionInfoTin")
+    comission_info_pinfl: str = Field(..., alias="comissionInfoPinfl")
 
 
 class OrderItem(BaseModel):
@@ -29,14 +29,14 @@ class OrderItem(BaseModel):
 class OrderDetails(BaseModel):
     latitude: float
     longitude: float
-    taxi_vehicle_number: str = Field(..., "taxiVehicleNumber")
-    taxi_tin: str = Field(..., "taxiTin")
-    taxi_pinfl: str = Field(..., "taxiPinfl")
+    taxi_vehicle_number: str = Field(..., alias="taxiVehicleNumber")
+    taxi_tin: str = Field(..., alias="taxiTin")
+    taxi_pinfl: str = Field(..., alias="taxiPinfl")
 
 
 class Order(BaseModel):
     order_id: str
-    order_items: List[OrderItem] = Field(..., alias="orderItems")
-    details: OrderDetails = Field(..., "uzRegulatoryOrderDetails")
+    order_items: Optional[List[OrderItem]] = Field(..., alias="orderItems")
+    details: OrderDetails = Field(..., alias="uzRegulatoryOrderDetails")
     billing_address: Address = Field(..., alias="billingAddress")
     shipping_address: Address = Field(..., alias="shippingAddress")
