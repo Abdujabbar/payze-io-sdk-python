@@ -30,8 +30,8 @@ class PayoutAccount(BaseModel):
 
 class PayoutSplit(BaseModel):
     amount: float
-    payout_account: PayoutAccount
-    delay_payout_days: int
+    payout_account: PayoutAccount = Field(..., alias="payoutAccount")
+    delay_payout_days: int = Field(..., alias="delayPayoutDays")
     description: str
 
 
@@ -58,3 +58,34 @@ class Payment(BaseModel):
     payout_split: Optional[PayoutSplit]
     share_link: Optional[ShareLink]
     token: Optional[str]
+
+
+class PaymentCapture(BaseModel):
+    transaction_id: str = Field(..., alias="transactionId")
+    amount: str = Field(..., alias="amount")
+
+
+class PaymentCardData(BaseModel):
+    transaction_id: str = Field(..., alias="transactionId")
+    number: str
+    card_holder: str = Field(..., alias="cardHolder")
+    expiration_date: str = Field(..., alias="expirationDate")
+    security_number: str = Field(..., alias="securityNumber")
+
+
+class PaymentRefund(BaseModel):
+    transaction_id: str = Field(..., alias="transactionId")
+    amount: float
+    idempotency_key: str = Field(..., alias="idempotencyKey")
+    order_data: Order = Field(..., alias="orderData")
+    extra_attributes: dict = Field(..., alias="extraAttributes")
+
+
+class PayoutSplitUpdate(BaseModel):
+    transaction_id: str
+    splits: list[PayoutSplit]
+    idempotency_key: str = Field(..., alias="idempotencyKey")
+
+
+class PayoutCancelSplit(BaseModel):
+    transaction_id: str
