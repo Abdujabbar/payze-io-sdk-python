@@ -1,11 +1,8 @@
-import json
 import os
 
 from dotenv import load_dotenv
 
 from src.sdk.payze_sdk import PayzeSDK
-from src.sdk.schemas.payment import Hooks, PaymentCapture, PaymentSource
-from src.sdk.services.base import BaseService
 
 load_dotenv()
 
@@ -22,6 +19,7 @@ def main():
         success_redirect_gateway=os.getenv("SUCCESS_REDIRECT_GATEWAY"),
         error_redirect_gateway=os.getenv("ERROR_REDIRECT_GATEWAY"),
     )
+    print(sdk)
 
 
 if __name__ == "__main__":

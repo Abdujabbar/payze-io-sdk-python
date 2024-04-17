@@ -1,12 +1,10 @@
 from typing import Optional
 
-from src.sdk.schemas.order import Order
 from src.sdk.schemas.payment import (
     CardPayment,
     Hooks,
     MetaData,
     Payment,
-    PaymentRefund,
     PaymentSource,
     PayoutSplit,
     ShareLink,
