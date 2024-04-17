@@ -11,9 +11,8 @@ class HttpClient:
         self._base_url = base_url
 
     def get(self, path="", headers=dict(), params=dict()):
-
         response = requests.get(
-            f"{self._base_url}{path}", data=params, headers=self._headers | headers
+            f"{self._base_url}{path}", params=params, headers=self._headers | headers
         )
 
         return response

@@ -68,11 +68,11 @@ class PaymentService(BaseService):
         )
 
     def capture(self, transaction_id: str, amount: float):
-        payment_capture = PaymentCapture(transaction_id=transaction_id, amount=amount)
+        payment_capture = PaymentCapture(transactionId=transaction_id, amount=amount)
 
         return self._http_client.put(
             path=METHODS.get("PaymentService.capture"),
-            payload=payment_capture.model_dump(),
+            payload=payment_capture.model_dump(by_alias=True),
         )
 
     def pay(
@@ -93,7 +93,7 @@ class PaymentService(BaseService):
 
         return self._http_client.post(
             path=METHODS.get("PaymentService.pay"),
-            payload=payment_card_data.model_dump(),
+            payload=payment_card_data.model_dump(by_alias=True),
         )
 
     def get_payments(self, filter: str, top: int, skip: int, orderby: str):
@@ -106,7 +106,7 @@ class PaymentService(BaseService):
     def receipt(self, transaction_id: str):
         return self._http_client.get(
             path=METHODS.get("PaymentService.get_receipt"),
-            params={"transactionId": transaction_id},
+            params={"TransactionId": transaction_id},
         )
 
     def refund(
@@ -131,7 +131,7 @@ class PaymentService(BaseService):
 
         return self._http_client.put(
             path=METHODS.get("PaymentService.refund"),
-            payload=payment_refund_builder.build().model_dump(),
+            payload=payment_refund_builder.build().model_dump(by_alias=True),
         )
 
     def get_refunds(self, transaction_id: str):

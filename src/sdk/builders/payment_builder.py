@@ -109,10 +109,10 @@ class PaymentRefundBuilder:
             amount=self.amount,
             # Optional fields
             idempotencyKey=(
-                self._idempotency_key if hasattr(self, "_idempotency_key") else None
+                self._idempotency_key if hasattr(self, "_idempotency_key") else ""
             ),
             orderData=self._order if hasattr(self, "_order") else None,
             extraAttributes=(
-                self._extra_attributes if hasattr(self, "_extra_attributes") else dict()
+                self._extra_attributes if hasattr(self, "_extra_attributes") else None
             ),
         )

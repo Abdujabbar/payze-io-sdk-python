@@ -62,7 +62,7 @@ class Payment(BaseModel):
 
 class PaymentCapture(BaseModel):
     transaction_id: str = Field(..., alias="transactionId")
-    amount: str = Field(..., alias="amount")
+    amount: float = Field(..., alias="amount")
 
 
 class PaymentCardData(BaseModel):
@@ -76,9 +76,9 @@ class PaymentCardData(BaseModel):
 class PaymentRefund(BaseModel):
     transaction_id: str = Field(..., alias="transactionId")
     amount: float
-    idempotency_key: str = Field(..., alias="idempotencyKey")
-    order_data: Order = Field(..., alias="orderData")
-    extra_attributes: dict = Field(..., alias="extraAttributes")
+    idempotency_key: Optional[str] = Field(..., alias="idempotencyKey")
+    order_data: Optional[Order] = Field(..., alias="orderData")
+    extra_attributes: Optional[dict] = Field(..., alias="extraAttributes")
 
 
 class PayoutSplitUpdate(BaseModel):
