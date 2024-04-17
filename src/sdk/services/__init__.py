@@ -9,4 +9,8 @@ METHODS = {
     "PaymentService.get_receipt": "/payment/receipt",
     "PaymentService.get_refunds": "/payment/refund/query/token-based",
     "PaymentService.get_splits": "/payment/split/query/token-based",
+    "AccountService.get_company_balance": "/account/balance/token-based",
+    "AccountService.get_bank_accounts": "/bankaccount/query/token-based",
+    "PayoutService.create": "/payout",
+    "PayoutService.get_items": "/payout/query/token-based",
 }
