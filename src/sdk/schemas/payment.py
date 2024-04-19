@@ -1,7 +1,7 @@
 from enum import Enum
 from typing import Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, PositiveFloat
 
 from .order import Order
 
@@ -31,7 +31,7 @@ class PayoutAccount(BaseModel):
 
 
 class PayoutSplit(BaseModel):
-    amount: float
+    amount: PositiveFloat
     payout_account: PayoutAccount = Field(..., alias="payoutAccount")
     delay_payout_days: int = Field(..., alias="delayPayoutDays")
     description: str
@@ -50,7 +50,7 @@ class MetaData(BaseModel):
 
 class Payment(BaseModel):
     source: str
-    amount: float
+    amount: PositiveFloat
     currency: str
     hooks: Hooks
     language: Optional[str]
@@ -64,7 +64,7 @@ class Payment(BaseModel):
 
 class PaymentCapture(BaseModel):
     transaction_id: str = Field(..., alias="transactionId")
-    amount: float = Field(..., alias="amount")
+    amount: PositiveFloat = Field(..., alias="amount")
 
 
 class PaymentCardData(BaseModel):
@@ -77,7 +77,7 @@ class PaymentCardData(BaseModel):
 
 class PaymentRefund(BaseModel):
     transaction_id: str = Field(..., alias="transactionId")
-    amount: float
+    amount: PositiveFloat
     idempotency_key: Optional[str] = Field(..., alias="idempotencyKey")
     order_data: Optional[Order] = Field(..., alias="orderData")
     extra_attributes: Optional[dict] = Field(..., alias="extraAttributes")

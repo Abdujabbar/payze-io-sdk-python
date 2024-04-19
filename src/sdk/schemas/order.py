@@ -1,6 +1,6 @@
 from typing import List, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, PositiveFloat
 
 from .address import Address
 
@@ -19,7 +19,7 @@ class OrderItem(BaseModel):
     product_label: str
     package_code: str
     product_quantity: float
-    price: float
+    price: PositiveFloat
     sum_price: float
     vat: float
     vat_percent: float

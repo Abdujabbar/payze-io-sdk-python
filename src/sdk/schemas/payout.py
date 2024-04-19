@@ -1,7 +1,7 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, PositiveFloat
 
 
 class Payout(BaseModel):
-    amount: float
+    amount: PositiveFloat
     currency: str
     bank_account_id: int = Field(..., alias="bankAccountId")
