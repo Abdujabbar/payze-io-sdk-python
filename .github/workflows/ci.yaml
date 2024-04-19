@@ -1,4 +1,4 @@
-name: Pylint
+name: Check lint via flake8
 
 on: [push]
 
@@ -21,6 +21,6 @@ jobs:
     - name: Install deps
       run: |
         poetry install
-    - name: Analysing the code with pylint
+    - name: Run lint checks
       run: |
         poetry run flake8 src
